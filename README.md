@@ -93,14 +93,14 @@ All graphs dumps are saved in ```plots/``` by default
 
 Let's look at the control flow graph and apply ```DAlgorithm``` to it:
 
-<div style="display: flex; justify-content: space-between;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
   <img src="plots/graph_predecessors.dot.png" alt="Image 1" width="20%" />
-  <img src="plots/graph_dominators.dot.png" alt="Image 2" width="20%"/>
+  <img src="plots/graph_dominators.dot.png" alt="Image 2" width="70%"/>
 </div>
 
 Then let's look at thr dominator tree and dominance frontier:
 
-<div style="display: flex; justify-content: space-between;">
-  <img src="plots/graph_domtree.dot.png" alt="Image 3" width="32%" />
+<div style="display: flex; justify-content: space-between; align-items: flex-start;">
+  <img src="plots/graph_domtree.dot.png" alt="Image 3" width="33%" />
   <img src="plots/graph_domfrontier.dot.png" alt="Image 4" width="40%" />
 </div>

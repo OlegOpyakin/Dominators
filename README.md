@@ -95,7 +95,8 @@ Let's look at the control flow graph and apply the implemented algorithms to it:
 
 <div style="display: flex; justify-content: space-between;">
   <img src="plots/graph_predecessors.dot.png" alt="Image 1" width="24%" />
-  <img src="plots/graph_dominators.dot.png" alt="Image 2" width="24%" />
   <img src="plots/graph_domtree.dot.png" alt="Image 3" width="24%" />
   <img src="plots/graph_domfrontier.dot.png" alt="Image 4" width="24%" />
 </div>
+
+<img src="plots/graph_dominators.dot.png" alt="Image 2" width="100%" />

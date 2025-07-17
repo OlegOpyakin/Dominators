@@ -11,6 +11,48 @@ This project implements a CFG analysis tool for computing dominators, dominance 
 - **Dominance Frontier Calculation**: Computes the dominance frontier for each block.
 - **Graph Visualization**: Generates visual representations of each computed graph.
 
+## Project Structure
+
+```t
+Dominators/
+├── inc/
+│   ├── BasicBlock.h        # BasicBlock representation
+│   ├── Graph.h             # Main Graph class with different methods
+│   ├── DAlgorithm.h        # Dominator Search algorithm
+│   ├── DTAlgorithm.h       # Dominance Tree formation algorithm
+│   ├── DFAlgorithm.h       # Dominance Frontier formation algorithm
+│   └── Dump.h              # Methods to plot all graphs
+├── src/
+│   └── main.cc             # Test for different graphs
+├── src/                    
+│   ├── *.png               # Directory where all dumped 
+│   ...                     # graphs are saved by default
+│   └── *.png
+├── CMakeLists.txt          # Build configuration
+└── README.md
+```
+
+## Building and Running
+
+### Prerequisites
+
+- C++20 compatible compiler (GCC 10+, Clang 12+)
+- CMake 3.6+
+
+### Build Instructions
+
+```bash
+mkdir build && cd build
+
+cmake ..
+
+make
+
+./Dominator
+```
+
+All graphs dumps are saved in ```plots/``` by default
+
 ## Algorithms Used
 
 ### Dominator Search (DAlgorithm)
@@ -72,22 +114,6 @@ auto analyseDF(Function F) {
     return DF;
 }
 ```
-
-## Build and run
-
-```sh
-mkdir build
-
-cd build
-
-cmake ..
-
-make
-
-./Dominator
-```
-
-All graphs dumps are saved in ```plots/``` by default
 
 ## Examples
 

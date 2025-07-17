@@ -30,16 +30,13 @@ void TestSmallGraph() {
     cfg.DAlgorithm();
     cfg.DumpDominators("cfg_dominators.dot", "TestCFG_Dominators");
     
-    std::cout << "\nTest DTAlgorithm:\n";
     cfg.DTAlgorithm();
     cfg.DumpDomTree("cfg_domtree.dot", "TestCFG_DomTree");
     
-    std::cout << "\nTest DFAlgorithm:\n";
     cfg.DFAlgorithm();
     cfg.DumpDomFrontier("cfg_domfrontier.dot", "TestCFG_DomFrontier");
     
     
-    std::cout << "\nTesting more complex graph:\n";
     Graph complex_cfg(4);
     complex_cfg.AddEdge(0, 1);
     complex_cfg.AddEdge(0, 2);
@@ -51,16 +48,6 @@ void TestSmallGraph() {
     
     complex_cfg.DFAlgorithm();
     complex_cfg.DumpDomFrontier("complex_domfrontier.dot", "ComplexDomFrontier");
-    
-    // Print dominance frontier for complex graph
-    std::cout << "\nComplex graph dominance frontiers:\n";
-    for(const auto& [block_id, block] : complex_cfg.GetMap()){
-        std::cout << "Block " << block_id << " DF: ";
-        for(size_t df : block.dom_frontier_){
-            std::cout << df << " ";
-        }
-        std::cout << "\n";
-    }
 }
 
 void TestHardGraph1() {
@@ -99,38 +86,27 @@ void TestHardGraph2() {
     graphSBER.DumpAll();
 }
 
-/*
-void TestBigGraph(size_t num_of_vars, size_t graph_size, size_t edges_number) {
-    // Goal of this test is to check 
-    // the convergence of the algorithm
-
-    std::random_device r;
-    std::default_random_engine e(r());
-    std::uniform_int_distribution<int> dist1(0,num_of_vars-1);
-    std::uniform_int_distribution<int> dist2(1,graph_size-1);
-    std::uniform_int_distribution<int> dist3(1,2);
-
-    ControlFlowGraph cfg(num_of_vars, graph_size); // cfg(num_of_vars, graph_size)
-
-    for(int i = 0; i < edges_number; ++i){
-        cfg.AddEdge(dist2(e), dist2(e)); // adding edges
-    }
-
-    for(int i = 0; i < graph_size;  ++i){
-        for(int j = 0; j < num_of_vars; ++j){
-            if(dist3(e) == 2)  cfg.blocks_[i].AddDef(j);
-            if(dist3(e) == 2)  cfg.blocks_[i].AddKill(j);
-        }
-    }
-
-    cfg.InitBitVectors();
-    std::cout << "\nIterations: " << cfg.ReachingDefinitions() << "\n";
-    cfg.ShowGraph();
+void TestGenerateEdges() {
+    Graph graph1(5); // 5 blocks, 8 edges
+    graph1.GenerateEdges(8);
+    graph1.DFAlgorithm();
+    graph1.DumpAll("generated_small", "GeneratedSmall");
+    
+    Graph graph2(10); // 10 blocks, 15 edges
+    graph2.GenerateEdges(15);
+    graph2.DFAlgorithm();
+    graph2.DumpAll("generated_large", "GeneratedLarge");
+    
+    Graph graph3(6); // 6 blocks, 20 edges
+    graph3.GenerateEdges(20);
+    graph3.DFAlgorithm();
+    graph3.DumpAll("generated_dense", "GeneratedDense");
 }
-*/
+
 int main() try{
     //TestSmallGraph();
-    TestHardGraph2();
+    //TestHardGraph2();
+    TestGenerateEdges();
 }
 catch (const std::exception& e){
     std::cerr << "Error: " << e.what() << "\n";

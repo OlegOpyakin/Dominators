@@ -2,6 +2,8 @@
 #include <fstream>
 #include <map>
 #include <stdexcept>
+#include <random>
+#include <algorithm>
 #include "BasicBlock.h"
 
 #pragma once
@@ -55,7 +57,64 @@ public:
     void DumpAll(const std::string& base_name = "graph", const std::string& graph_name = "Graph"); // dump all graphs
 };
 
-void GenerateEdges(size_t num_of_edges){
+void Graph::GenerateEdges(size_t num_of_edges){
+    if (blocks_counter_ == 0) {
+        throw std::runtime_error("Error: Cannot generate edges for empty graph\n");
+    }
+    
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<size_t> block_dist(0, blocks_counter_ - 1);
+    
+    for (auto& [id, block] : blocks_) {
+        block.predcessors_.clear();
+        block.successors_.clear();
+    }
+    
+    for (size_t i = 0; i < blocks_counter_ - 1; ++i) {
+        size_t target = i + 1;
+        AddEdge(i, target);
+        num_of_edges--;
+    }
+    
+    size_t attempts = 0;
+    const size_t max_attempts = num_of_edges * 10;
+    
+    while (num_of_edges > 0 && attempts < max_attempts) {
+        size_t from = block_dist(gen);
+        size_t to = block_dist(gen);
+        
+        if (from == to && gen() % 3 == 0) {
+            attempts++;
+            continue;
+        }
+        
+        bool edge_exists = false;
+        for (size_t succ : blocks_[from].successors_) {
+            if (succ == to) {
+                edge_exists = true;
+                break;
+            }
+        }
+        
+        if (!edge_exists) {
+            AddEdge(from, to);
+            num_of_edges--;
+        }
+        
+        attempts++;
+    }
+    
+    blocks_[0].predcessors_.clear();
+    
+    for (auto& [id, block] : blocks_) {
+        if (id != 0) {
+            block.successors_.erase(
+                std::remove(block.successors_.begin(), block.successors_.end(), 0),
+                block.successors_.end()
+            );
+        }
+    }
 }
 
 

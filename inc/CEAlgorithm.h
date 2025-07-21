@@ -16,11 +16,11 @@ void Graph::CEAlgorithm() {
 
                     BasicBlock block;
                     blocks_.insert(std::make_pair(blocks_counter_,  block)); // add new block
-                    auto new_block_id = blocks_counter_;
-                    blocks_counter_++;
 
-                    AddEdge(block_id, new_block_id);
-                    AddEdge(new_block_id, succ_id);
+                    AddEdge(block_id, blocks_counter_);
+                    AddEdge(blocks_counter_, succ_id);
+
+                    blocks_counter_++;
                 }
             }
         }

@@ -164,7 +164,7 @@ Graph before and after CEAlgorithm:
 
 <table>
   <tr valign="top">
-    <td><img src="plots/critical_small_before_CE.png.dot.png" alt="Image 1" style="width: 100%;" /></td>
-    <td><img src="plots/critical_small_after_CE.png.dot.png" alt="Image 2" style="width: 100%;" /></td>
+    <td><img src="plots/critical_small_before_CE.png" alt="Image 1" style="width: 100%;" /></td>
+    <td><img src="plots/critical_small_after_CE.png" alt="Image 2" style="width: 100%;" /></td>
   </tr>
 </table>

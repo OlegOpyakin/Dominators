@@ -122,7 +122,7 @@ auto analyseDF(Function F) {
 My implementation is yet very simple and was not taken from any source
 
 ```c++
-auto analyseCE(Function F) {
+auto analyseCE() {
     for(auto predcessor: blocks_){
         if(predcessor.successors_number > 1){
             for(auto successor: predcessor.successors_){
@@ -164,7 +164,7 @@ Graph before and after CEAlgorithm:
 
 <table>
   <tr valign="top">
-    <td><img src="plots/critical_small_before_CE.dot.png" alt="Image 1" style="width: 100%;" /></td>
-    <td><img src="plots/critical_small_after_CE.dot.png" alt="Image 2" style="width: 100%;" /></td>
+    <td><img src="plots/critical_small_before_CE.png.dot.png" alt="Image 1" style="width: 100%;" /></td>
+    <td><img src="plots/critical_small_after_CE.png.dot.png" alt="Image 2" style="width: 100%;" /></td>
   </tr>
 </table>

@@ -17,14 +17,14 @@ public:
     Graph(size_t graph_size): blocks_counter_(0) {
         for(; blocks_counter_ < graph_size; ++blocks_counter_) {
             BasicBlock block;
-            blocks_.insert(std::pair(blocks_counter_,  block));
+            blocks_.insert(std::make_pair(blocks_counter_,  block));
         }
     }
 
     void AddBlock(){
         ++blocks_counter_;
         BasicBlock block;
-        blocks_.insert(std::pair(blocks_counter_,  block));
+        blocks_.insert(std::make_pair(blocks_counter_,  block));
     }
 
     void AddEdge(size_t edge_start, size_t edge_end){

@@ -15,7 +15,7 @@ void Graph::CEAlgorithm() {
                     DeleteEdge(block_id, succ_id);
 
                     BasicBlock block;
-                    blocks_.insert(std::pair(blocks_counter_,  block)); // add new block
+                    blocks_.insert(std::make_pair(blocks_counter_,  block)); // add new block
                     auto new_block_id = blocks_counter_;
                     blocks_counter_++;
 

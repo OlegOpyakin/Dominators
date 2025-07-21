@@ -19,8 +19,24 @@ public:
         predcessors_.push_back(pred);
     }
 
+    void DeletePred(size_t pred){
+        auto elt = std::find(predcessors_.begin(), predcessors_.end(), pred);
+        if(elt == predcessors_.end()){
+            throw std::runtime_error("Predcessor not found!");
+        }
+        predcessors_.erase(elt);
+    }
+
     void AddSucc(size_t succ){
         successors_.push_back(succ);
+    }
+
+    void DeleteSucc(size_t succ){
+        auto elt = std::find(successors_.begin(), successors_.end(), succ);
+        if(elt == successors_.end()){
+            throw std::runtime_error("Predcessor not found!");
+        }
+        successors_.erase(elt);
     }
 
     void AddDom(size_t dom){

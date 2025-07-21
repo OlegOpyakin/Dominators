@@ -101,7 +101,7 @@ for(auto [I, Domset]: Dom){
 
 ```c++
 auto analyseDF(Function F) {
-    auto IDom = F. immediateDominatorSet();
+    auto IDom = F.immediateDominatorSet();
     auto DF = Map<Block, Set<Block>>{};
     for (auto B : F.blocks)
         for (auto P: F. preds (B)) {
@@ -115,9 +115,34 @@ auto analyseDF(Function F) {
 }
 ```
 
+### Critical Edges (CEAlgorithm)
+
+-> Finds critical edges in graph and reduces them, by adding additional basic blocks
+
+My implementation is yet very simple and was not taken from any source
+
+```c++
+auto analyseCE(Function F) {
+    for(auto predcessor: blocks_){
+        if(predcessor.successors_number > 1){
+            for(auto successor: predcessor.successors_){
+                if(successor.predcessors_number > 1){
+                    DeleteEdge(predcessor, successor);
+
+                    AddBasicBlock(new_block); // add new block
+
+                    AddEdge(predcessor, new_block);
+                    AddEdge(new_block, successor);
+                }
+            }
+        }
+    }
+}
+```
+
 ## Examples
 
-Let's look at the control flow graph and apply ```DAlgorithm``` to it:
+Control flow graph and ```DAlgorithm``` result to it:
 
 <table>
   <tr valign="top">
@@ -126,11 +151,20 @@ Let's look at the control flow graph and apply ```DAlgorithm``` to it:
   </tr>
 </table>
 
-Then let's look at thr dominator tree and dominance frontier:
+Dominator tree and dominance frontier:
 
 <table>
   <tr valign="top">
     <td><img src="plots/graph_domtree.dot.png" alt="Image 1" style="width: 100%;" /></td>
     <td><img src="plots/graph_domfrontier.dot.png" alt="Image 2" style="width: 100%;" /></td>
+  </tr>
+</table>
+
+Graph before and after CEAlgorithm:
+
+<table>
+  <tr valign="top">
+    <td><img src="plots/critical_small_before.dot.png" alt="Image 1" style="width: 100%;" /></td>
+    <td><img src="plots/critical_big_before.dot.png" alt="Image 2" style="width: 100%;" /></td>
   </tr>
 </table>

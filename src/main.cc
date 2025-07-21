@@ -3,6 +3,7 @@
 #include "DAlgorithm.h"
 #include "DTAlgorithm.h"
 #include "DFAlgorithm.h"
+#include "CEAlgorithm.h"
 #include "Dump.h"
 
 void TestSmallGraph() {
@@ -103,10 +104,36 @@ void TestGenerateEdges() {
     graph3.DumpAll("generated_dense", "GeneratedDense");
 }
 
+void TestCriticalEdges() {
+    Graph graphCriticalSmall(4);
+    graphCriticalSmall.AddEdge(0, 1);
+    graphCriticalSmall.AddEdge(2, 3);
+    graphCriticalSmall.AddEdge(0, 3);
+    graphCriticalSmall.DumpPredecessors("critical_small_before_CE", "CriticalSmallBeforeCE");
+
+    graphCriticalSmall.CEAlgorithm();
+    graphCriticalSmall.DumpPredecessors("critical_small_after_CE", "CriticalSmallAfterCE");
+
+    Graph graphCriticalBig(6);
+    graphCriticalBig.AddEdge(0, 1);
+    graphCriticalBig.AddEdge(1, 4);
+    graphCriticalBig.AddEdge(2, 3);
+    graphCriticalBig.AddEdge(3, 5);
+    graphCriticalBig.AddEdge(0, 3);
+    graphCriticalBig.AddEdge(3, 4);
+
+    graphCriticalBig.DumpPredecessors("critical_big_before_CE", "CriticalBigBeforeCE");
+
+    graphCriticalBig.CEAlgorithm();
+    graphCriticalBig.DumpPredecessors("critical_big_after_CE", "CriticalBigAfterCE");
+}
+
+
 int main() try{
     //TestSmallGraph();
     //TestHardGraph2();
-    TestGenerateEdges();
+    //TestGenerateEdges();
+    TestCriticalEdges();
 }
 catch (const std::exception& e){
     std::cerr << "Error: " << e.what() << "\n";

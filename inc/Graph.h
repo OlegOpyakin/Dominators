@@ -32,6 +32,11 @@ public:
         blocks_[edge_end].AddPred(edge_start);
     }
 
+    void DeleteEdge(size_t edge_start, size_t edge_end){
+        blocks_[edge_start].DeleteSucc(edge_end);
+        blocks_[edge_end].DeletePred(edge_start);
+    }
+
     std::map<size_t, BasicBlock> GetMap() const{
         return blocks_;
     }
@@ -50,6 +55,7 @@ public:
     void DAlgorithm(); // dominator search algorithm
     void DTAlgorithm(); // dominator tree algorithm
     void DFAlgorithm(); // dominance frontier algorithm
+    void CEAlgorithm(); // reduce all critical edges
     void DumpPredecessors(const std::string& filename = "predecessors.dot", const std::string& graph_name = "PredecessorGraph"); // dump predecessors with graphvis
     void DumpDominators(const std::string& filename = "dominators.dot", const std::string& graph_name = "DominatorGraph"); // dump dominators with graphvis
     void DumpDomTree(const std::string& filename = "domtree.dot", const std::string& graph_name = "DominatorTree"); // dump dominator tree with graphvis

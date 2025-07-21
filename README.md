@@ -9,6 +9,7 @@ This project implements a CFG analysis tool for computing dominators, dominance 
 - **Dominator Analysis**: Calculates dominators of each basic block.
 - **Dominator Tree Construction**: Constructs the dominator tree from dominator data.
 - **Dominance Frontier Calculation**: Computes the dominance frontier for each block.
+- **Critical Edges Reduction**: Finds critical edges in graph and reduces them.
 - **Graph Visualization**: Generates visual representations of each computed graph.
 
 ## Project Structure
@@ -21,6 +22,7 @@ Dominators/
 │   ├── DAlgorithm.h        # Dominator Search algorithm
 │   ├── DTAlgorithm.h       # Dominance Tree formation algorithm
 │   ├── DFAlgorithm.h       # Dominance Frontier formation algorithm
+│   ├── CEAlgorithm.h       # Critical Edges reduction algorithm
 │   └── Dump.h              # Methods to plot all graphs
 ├── src/
 │   └── main.cc             # Test for different graphs

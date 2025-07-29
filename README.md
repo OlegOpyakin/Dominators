@@ -1,5 +1,10 @@
 # Dominators
 
+## Related projects
+
+- [Reaching definitions analysys(also AE & LV)](https://github.com/OlegOpyakin/Graphs.git)
+- [Variable dependancy graph analysys](https://github.com/OlegOpyakin/Cycles.git)
+
 ## Overview
 
 This project implements a CFG analysis tool for computing dominators, dominance trees, and dominance frontiers. It uses several algorithms explained below for analyzing program control flow, mainly focused on the relationships between basic blocks in a graph.
